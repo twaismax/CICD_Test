@@ -23,7 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirments.txt
           pip install -r ci_requirments.txt
-          fi
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
      
       - name: Test with pytest
