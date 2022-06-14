@@ -12,10 +12,7 @@ jobs:
         python-version: ["3.8"]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-     
-      - uses: actions/checkout@v3
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 0
+      - uses: actions/checkout@master
         
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
@@ -53,7 +50,7 @@ jobs:
 
       - name: Push changes
         if: steps.changed_files.outputs.files_changed == 'true'
-        uses: ad-m/github-push-action@master
+        uses: actions/push@master
         with:
           github_token: ${{ secrets.github_token }}
           branch: ${{ github.ref }}
