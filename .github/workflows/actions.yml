@@ -4,11 +4,8 @@ on:
   pull_request:
       branches:
           - main
-permissions:
-    pull-requests: write
-    issues: write
-    repository-projects: write
-    
+permissions: write-all
+
 jobs:
   BeeHome-GitHub-Actions:
 
@@ -18,7 +15,7 @@ jobs:
         python-version: ["3.8"]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
         with:
             persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
             fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
@@ -62,7 +59,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.github_token }}
-          branch: ${{ github.ref }} 
+          branch: ${{ github.head_ref }} 
           
         
       - run: echo "🍏 This job's status is ${{ job.status }}."
