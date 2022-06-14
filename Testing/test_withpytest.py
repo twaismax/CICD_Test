@@ -1,6 +1,5 @@
-import time
 import pytest
-from Code.MyCrazyCalculator import myCrazyCalclulator
+from Calculator.MyCrazyCalculator import myCrazyCalclulator
 from freezegun import freeze_time
 
 def test_passes():
