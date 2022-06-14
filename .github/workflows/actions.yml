@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirments.txt
           pip install -r ci_requirments.txt
           fi
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
