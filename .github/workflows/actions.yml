@@ -4,11 +4,8 @@ on:
   pull_request:
       branches:
           - main
-permissions:
-    pull-requests: write
-    issues: write
-    repository-projects: write
-    
+permissions: write-all
+
 jobs:
   BeeHome-GitHub-Actions:
 
@@ -62,7 +59,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.github_token }}
-          branch: ${{ github.ref }} 
+          branch: ${{ github.head_ref }} 
           
         
       - run: echo "🍏 This job's status is ${{ job.status }}."
