@@ -3,6 +3,7 @@ import math
 from typing import List
 from datetime import datetime
 from random import randint
+import requests
 
 
 class myCrazyCalclulator():
@@ -42,9 +43,16 @@ class myCrazyCalclulator():
 
         return a * b * self.const_multiplier
 
-    async def long_calculation(self,items_to_mult: List[int]) -> int:
-        result = 1
-        for item in items_to_mult:
-            result *= item
-            await asyncio.sleep(0.5)
-        return result
+    def time_mult_calculation(self,a:int,b:int) -> int:
+        if not self.crazy_mode:
+            return a * b
+
+        return a*b*datetime.today().weekday()
+
+    def requests_calculation(self)->int:
+        if not self.crazy_mode:
+            return 0
+
+        r = requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass'))
+        return(r.status_code)
+
