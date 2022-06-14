@@ -13,6 +13,8 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@master
+        with:
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
         
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
@@ -50,7 +52,7 @@ jobs:
 
       - name: Push changes
         if: steps.changed_files.outputs.files_changed == 'true'
-        uses: actions/push@master
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.github_token }}
           branch: ${{ github.ref }}
