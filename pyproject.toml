@@ -1,0 +1,23 @@
+[project]
+name = "CI_CD"
+version = "2.5"
+description = "Pyproject for CICD tester"
+authors = [
+	"Tomer Waisman <tomer@beewise.ag>",
+
+]
+license = "Commercial"
+readme = "README.md"
+python = "^3.8"
+
+keywords = ["CICD"]
+
+classifiers = [
+    "Topic :: Software Development",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "Testing"]
