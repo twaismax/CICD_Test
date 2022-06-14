@@ -1,6 +1,6 @@
 import time
 import pytest
-from Example_Demo.MyCrazyCalculator import myCrazyCalclulator
+from Code.MyCrazyCalculator import myCrazyCalclulator
 
 
 def test_passes():
@@ -16,7 +16,7 @@ def test_div_exception():
     calculator = myCrazyCalclulator(crazy_mode=True)
     # so simple!
     with pytest.raises(RuntimeError):
-        calculator.div(a=100, b=2)
+        calculator.div(a=200, b=2)
 
 
 @pytest.mark.parametrize("crazy_mode, a,b,result", [
@@ -30,10 +30,3 @@ def test_many_ways_of_plus(crazy_mode, a, b, result):
     calculator = myCrazyCalclulator(crazy_mode=crazy_mode)
     assert calculator.add(a=a, b=b) == result
 
-
-#execute with pytest -m "not slow"
-@pytest.mark.slow
-def test_too_slow_to_run_always():
-    print("In slow test")
-    time.sleep(5)
-    assert True
