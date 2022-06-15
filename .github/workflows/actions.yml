@@ -1,4 +1,4 @@
-name: Beehome GitHub Actions
+name:Beehome_GitHub_Actions
 on: 
   workflow_dispatch:
   pull_request:
