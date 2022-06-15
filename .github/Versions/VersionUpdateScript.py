@@ -3,7 +3,7 @@ import re
 
 import fire
 
-version_filepath = os.path.join('.', 'VersionFile.txt')
+version_filepath = os.path.join(os.path.dirname(__file__), 'VersionFile.txt')
 default_sanpshot_str="SNAPSHOT"
 version_pattern = re.compile(fr'^\d+.\d+.\d+(-(DEV|RC|RELEASE|{default_sanpshot_str}))')
 
@@ -31,7 +31,7 @@ def inc_patch():
 
 def inc_minor():
     version = get()
-    version_with_out_snapshot, snapshot = version.split('-')
+    version_with_out_snapshot, version_snapshot = version.split('-')
     major, minor, patch = version_with_out_snapshot.split('.')
     write_version_file(major, int(minor) + 1, patch,snapshot=version_snapshot)
 
