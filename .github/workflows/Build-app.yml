@@ -1,9 +1,8 @@
 name: BeehomeBuildJobs
-on:
+on: 
   schedule:
-    - cron: "*/10 * * * *"
+   - cron: "*/5 * * * *"
 permissions: write-all
-
 jobs:
   BeeHomeBuildGitHubActions:
     runs-on: ubuntu-latest
