@@ -14,6 +14,7 @@ jobs:
       matrix:
         python-version: ["3.8"]
     steps:
+    
       - run: echo "Enforcing name"
       - uses: deepakputhraya/action-pr-title@master
         with:
@@ -35,8 +36,6 @@ jobs:
           pip install -r requirments.txt
           pip install -r ci_requirments.txt
           
-      - name: Install pytest annotate plugin
-        run: pip install pytest-github-actions-annotate-failures
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
      
       - name: Test with pytest
