@@ -10,7 +10,8 @@ def test_add():
     calculator = myCrazyCalclulator(crazy_mode=False)
     assert calculator.add(a=1, b=3) == 4
 
-
+'''def test_fail():
+    assert False'''
 def test_div_exception():
     calculator = myCrazyCalclulator(crazy_mode=True)
     # so simple!
