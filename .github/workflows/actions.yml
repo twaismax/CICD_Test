@@ -74,7 +74,7 @@ jobs:
       - name: Add tag
         if: steps.changed_files.outputs.files_changed == 'true'
         run: |
-          VERSION=python ./.github/Versions/VersionUpdateScript.py get
+          VERSION = python ./.github/Versions/VersionUpdateScript.py get
           git tag -a $VERSION  -m "latest version"
           
       - name: Push changes
