@@ -3,7 +3,7 @@ from Calculator.MyCrazyCalculator import myCrazyCalclulator
 from freezegun import freeze_time
 
 def test_passes():
-    assert True
+    assert True and True
 
 
 def test_add():
