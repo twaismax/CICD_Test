@@ -2,8 +2,8 @@ name: BeehomeBuildJobs
 on:
   schedule:
     - cron:  '*/10 * * * *'
-    branches:
-          - main
+  branches:
+    - main
 permissions: write-all
 
 jobs:
