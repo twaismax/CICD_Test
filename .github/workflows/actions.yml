@@ -71,6 +71,12 @@ jobs:
           git add .github/Versions/VersionFile.txt
           git commit -m "Updated Pull request files"
 
+      - name: Add tag
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          VERSION=$(python ./.github/Versions/VersionUpdateScript.py get)
+          git tag -a $VERSION  -m "latest version"
+          
       - name: Push changes
         if: steps.changed_files.outputs.files_changed == 'true'
         uses: ad-m/github-push-action@master
