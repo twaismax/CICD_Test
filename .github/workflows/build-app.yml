@@ -36,7 +36,7 @@ jobs:
       - name: Updating version
         run: |
           python ./.github/Versions/VersionUpdateScript.py inc-patch
-          python ./.github/Versions/VersionUpdateScript.py get
+          python ./.github/Versions/VersionUpdateScript.py get_version
       
       - run: echo "Generating coverage badge"
       - name: Coverage Badge
@@ -61,7 +61,7 @@ jobs:
       - name: Add tag
         if: steps.changed_files.outputs.files_changed == 'true'
         run: |
-          VERSION=$(python ./.github/Versions/VersionUpdateScript.py get)
+          VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
           git tag -a $VERSION  -m "latest version"
           
       - name: Push changes
