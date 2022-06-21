@@ -37,7 +37,7 @@ jobs:
             git config --local user.name "github-actions[bot]"
             RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
             git branch $RELEASE_BRANCH_NAME
-            git push –set-upstream origin $RELEASE_BRANCH_NAME
+            git push origin $RELEASE_BRANCH_NAME
       
       - run: echo "Update Version And Creat Local Tag"
       - name: UpdateVersionAndCreateLocalTag
