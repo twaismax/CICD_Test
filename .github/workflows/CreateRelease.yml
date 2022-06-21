@@ -37,6 +37,7 @@ jobs:
             git config --local user.name "github-actions[bot]"
             RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
             git branch $RELEASE_BRANCH_NAME
+            git push –set-upstream origin $RELEASE_BRANCH_NAME
       
       - run: echo "Update Version And Creat Local Tag"
       - name: UpdateVersionAndCreateLocalTag
@@ -48,3 +49,9 @@ jobs:
             git tag -a $VERSION  -m "latest version"
             git add .github/Versions/VersionFile.txt
             git commit -m "Updated Pull request files"
+      - name: Push changes
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: ${{ github.head_ref }} 
