@@ -46,3 +46,5 @@ jobs:
             python ./.github/Versions/VersionUpdateScript.py inc-minor
             VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
             git tag -a $VERSION  -m "latest version"
+            git add .github/Versions/VersionFile.txt
+            git commit -m "Updated Pull request files"
