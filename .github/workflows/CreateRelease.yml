@@ -56,18 +56,14 @@ jobs:
             echo $RELEASE_BRANCH_NAME
             git checkout -b $RELEASE_BRANCH_NAME
             git branch
+        id: create_release_branch
+        
       - name: update version on new branch
         run: |
-            git branch
+            echo (steps.create_release_branch.outputs)
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .github/Versions/VersionFile.txt
             git commit -m "initial version for rc set"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.head_ref }} 
-            
       - name: Push to branch github
         run: |
             git push -u https://github.com/twaismax/CICD_Test.git --all
