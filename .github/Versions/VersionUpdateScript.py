@@ -49,7 +49,7 @@ def get_release_branch_name()->str:
 def create_initial_version_for_release():
     parsed, major, minor, patch, version_type = split_version()
     if (parsed):
-        write_version_file(major=major, minor=minor, patch=0, version_type=RC_TYPE)
+        write_version_file(major=major, minor=minor, patch=1, version_type=RC_TYPE)
 
 def get_merge_rc_tag_name()->str:
     parsed,major, minor,patch,version_type =split_version()
