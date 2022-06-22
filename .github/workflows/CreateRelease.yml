@@ -68,6 +68,6 @@ jobs:
             
       - name: Pusg to branch github
         run: |
-            git push origin $RELEASE_BRANCH_NAME
+            git push --set-upstream origin $RELEASE_BRANCH_NAME
      
   
