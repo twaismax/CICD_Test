@@ -40,18 +40,12 @@ jobs:
       - run: echo "Update Version And Creat Local Tag"
       - name: UpdateVersionAndCreateLocalTag
         run: |
-            
             python ./.github/Versions/VersionUpdateScript.py inc-minor
             VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
             git tag -a $VERSION  -m "latest version"
-            git add .github/Versions/VersionFile.txt
-            git commit -m "UpdatedRelase branch"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.head_ref }} 
-          
+            git add .
+            git commit -m "current branch"
+            git push
       - run: echo "Branch creation"
       - name: Create release branch
         run: |
@@ -64,6 +58,6 @@ jobs:
         run: |
             git checkout $RELEASE_BRANCH_NAME
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
-            git add .github/Versions/VersionFile.txt
-            git commit -m "initial version for rc set"
+            git add .
+            git commit -m "initial version for rc branch"
             git push
