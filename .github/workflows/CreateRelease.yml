@@ -70,6 +70,6 @@ jobs:
             
       - name: Push to branch github
         run: |
-            git push -u origin --all
+            git push -u https://github.com/twaismax/CICD_Test.git origin --all
      
   
