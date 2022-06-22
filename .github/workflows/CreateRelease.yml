@@ -44,22 +44,12 @@ jobs:
             echo "::set-output name=release_branch_name::$RELEASE_BRANCH_NAME"
             VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
             echo "::set-output name=current_version::$VERSION"
-            
           
       - name: Print
         run: |
               echo ${{steps.version_data.outputs.release_branch_name}}
               echo ${{steps.version_data.outputs.current_version}}
-            
-      - run: echo "Update Version And Creat Local Tag"
-      - name: UpdateVersionAndCreateLocalTag
-        run: |
-            python ./.github/Versions/VersionUpdateScript.py inc-minor
-            VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
-            git tag -a $VERSION  -m "latest version"
-            git add .
-            git commit -m "current branch"
-            git push
+      
       - run: echo "Branch creation"
       - name: Create release branch
         run: |
@@ -71,3 +61,14 @@ jobs:
             git commit -m "initial version for rc branch"
             git push
         id: create_release_branch  
+        
+      - run: echo "Master Version And Creat Local Tag"
+      - name: UpdateVersionAndCreateLocalTag
+        run: |
+            git checkout ${{github.head_ref}}
+            python ./.github/Versions/VersionUpdateScript.py inc-minor
+            VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
+            git tag -a $VERSION  -m "latest version"
+            git add .
+            git commit -m "current branch"
+            git push
