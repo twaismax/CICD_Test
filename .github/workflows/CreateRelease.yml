@@ -65,7 +65,6 @@ jobs:
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .github/Versions/VersionFile.txt
             git commit -m "initial version for rc set"
-            git push
       - name: Push to branch github
         run: |
             git push -u origin $RELEASE_BRANCH_NAME
