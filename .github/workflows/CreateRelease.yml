@@ -55,6 +55,7 @@ jobs:
             RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
             echo $RELEASE_BRANCH_NAME
             git checkout -b $RELEASE_BRANCH_NAME
+            git branch
       - name: update version on new branch
         run: |
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
