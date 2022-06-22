@@ -66,8 +66,8 @@ jobs:
           github_token: ${{ secrets.MY_TOKEN }}
           branch: ${{ github.head_ref }} 
             
-      - name: Pusg to branch github
+      - name: Push to branch github
         run: |
-            git push --set-upstream origin $RELEASE_BRANCH_NAME
+            git push -u origin head
      
   
