@@ -53,14 +53,14 @@ jobs:
       - name: Create release branch
         run: |
             RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
-            echo $RELEASE_BRANCH_NAME
+            echo "::set-output $RELEASE_BRANCH_NAME"
             git checkout -b $RELEASE_BRANCH_NAME
             git branch
         id: create_release_branch
         
       - name: update version on new branch
         run: |
-            echo ({steps.create_release_branch.outputs})
+            echo {steps.create_release_branch.outputs}
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .github/Versions/VersionFile.txt
             git commit -m "initial version for rc set"
