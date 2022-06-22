@@ -56,9 +56,10 @@ jobs:
         id: create_release_branch  
       - name: update version on new branch
         run: |
-            git checkout $RELEASE_BRANCH_NAME
+            echo $RELEASE_BRANCH_NAME
+            git checkout origin/$RELEASE_BRANCH_NAME
             git branch
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .
             git commit -m "initial version for rc branch"
-            git push $RELEASE_BRANCH_NAME
+            git push
