@@ -70,6 +70,6 @@ jobs:
             
       - name: Push to branch github
         run: |
-            git branch --set-upstream $RELEASE_BRANCH_NAME origin/$RELEASE_BRANCH_NAME 
+            git push -u origin --all
      
   
