@@ -37,6 +37,20 @@ jobs:
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git config remote.origin.url 'https://${{ secrets.MY_TOKEN }}@github.com/${{ github.repository }}'
       
+      - name: Get Release Branch Name
+        id: version_data  
+        run: |
+            RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
+            echo "::set-output name=release_branch_name::$RELEASE_BRANCH_NAME"
+            VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
+            echo "::set-output name=current_version::$VERSION"
+            
+          
+      - name: Print
+        run: |
+              echo ${{steps.version_data.outputs.release_branch_name}}
+              echo ${{steps.version_data.outputs.current_version}}
+            
       - run: echo "Update Version And Creat Local Tag"
       - name: UpdateVersionAndCreateLocalTag
         run: |
