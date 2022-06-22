@@ -60,4 +60,4 @@ jobs:
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .
             git commit -m "initial version for rc branch"
-            git push
+            git push $RELEASE_BRANCH_NAME
