@@ -53,7 +53,7 @@ jobs:
       - name: Create release branch
         run: |
             RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
-            echo ($RELEASE_BRANCH_NAME)
+            echo $RELEASE_BRANCH_NAME
             git checkout -b ($RELEASE_BRANCH_NAME(
       - name: update version on new branch
         run: |
