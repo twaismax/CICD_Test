@@ -29,10 +29,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirments.txt
           pip install -r ci_requirments.txt
-      
-      - name: Get new branch name      
-        run: |
-            RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
       - name: Set Credentials      
         run: |
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -56,8 +52,9 @@ jobs:
       - run: echo "Branch creation"
       - name: Create release branch
         run: |
-            echo $RELEASE_BRANCH_NAME
-            git checkout -b $RELEASE_BRANCH_NAME
+            RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
+            echo ($RELEASE_BRANCH_NAME)
+            git checkout -b ($RELEASE_BRANCH_NAME(
       - name: update version on new branch
         run: |
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
