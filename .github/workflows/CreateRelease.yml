@@ -68,6 +68,6 @@ jobs:
             git commit -m "initial version for rc set"
       - name: Push to branch github
         run: |
-            git push -u origin $RELEASE_BRANCH_NAME
+            git push --set-upstream origin $RELEASE_BRANCH_NAME
      
   
