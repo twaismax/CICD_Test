@@ -29,29 +29,47 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirments.txt
           pip install -r ci_requirments.txt
-          
-      - run: echo "Branch creation"
-      - name: Create Branch      
+      
+      - name: Get new branch name      
+        run: |
+            RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
+      - name: Set Credentials      
         run: |
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            RELEASE_BRANCH_NAME=$(python ./.github/Versions/VersionUpdateScript.py get_release_branch_name)
-            git branch $RELEASE_BRANCH_NAME
-            git push origin $RELEASE_BRANCH_NAME
       
       - run: echo "Update Version And Creat Local Tag"
       - name: UpdateVersionAndCreateLocalTag
         run: |
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
+            
             python ./.github/Versions/VersionUpdateScript.py inc-minor
             VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
             git tag -a $VERSION  -m "latest version"
             git add .github/Versions/VersionFile.txt
-            git commit -m "Updated Pull request files"
+            git commit -m "UpdatedRelase branch"
       - name: Push changes
-        if: steps.changed_files.outputs.files_changed == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_TOKEN }}
           branch: ${{ github.head_ref }} 
+          
+      - run: echo "Branch creation"
+      - name: Create release branch
+        run: |
+            git checkout -b $RELEASE_BRANCH_NAME
+      - name: update version on new branch
+        run: |
+            python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
+            git add .github/Versions/VersionFile.txt
+            git commit -m "initial version for rc set"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: ${{ github.head_ref }} 
+            
+      - name: Pusg to branch github
+        run: |
+            git push origin $RELEASE_BRANCH_NAME
+     
+  
