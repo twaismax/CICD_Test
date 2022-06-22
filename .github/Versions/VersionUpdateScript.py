@@ -8,8 +8,8 @@ RC_TYPE='rc'
 
 
 version_filepath = os.path.join(os.path.dirname(__file__), 'VersionFile.txt')
-version_pattern = re.compile(fr'^\d+.\d+.(({DEV_TYPE}|.{RC_TYPE}))\d+')
-version_split_snepshot_pattern=f".{DEV_TYPE}|{RC_TYPE}"
+version_pattern = re.compile(fr'^\d+.\d+.(({DEV_TYPE}|{RC_TYPE}))\d+')
+version_split_snepshot_pattern=f".{DEV_TYPE}|.{RC_TYPE}"
 
 def get_version():
     with open(version_filepath, 'r') as version_file:
@@ -49,7 +49,7 @@ def get_release_branch_name()->str:
 def create_initial_version_for_release():
     parsed, major, minor, patch, version_type = split_version()
     if (parsed):
-        write_version_file(major=major, minor=minor, patch=1, version_type=RC_TYPE)
+        write_version_file(major=major, minor=minor, patch=0, version_type=RC_TYPE)
 
 def get_merge_rc_tag_name()->str:
     parsed,major, minor,patch,version_type =split_version()
