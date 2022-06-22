@@ -66,6 +66,7 @@ jobs:
       - name: UpdateVersionAndCreateLocalTag
         run: |
             git checkout ${{github.head_ref}}
+            git branch
             python ./.github/Versions/VersionUpdateScript.py inc-minor
             VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
             git tag -a $VERSION  -m "latest version"
