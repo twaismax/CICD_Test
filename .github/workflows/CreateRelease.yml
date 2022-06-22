@@ -60,7 +60,7 @@ jobs:
         
       - name: update version on new branch
         run: |
-            echo (steps.create_release_branch.outputs)
+            echo ({steps.create_release_branch.outputs})
             python ./.github/Versions/VersionUpdateScript.py create_initial_version_for_release
             git add .github/Versions/VersionFile.txt
             git commit -m "initial version for rc set"
