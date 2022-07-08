@@ -9,7 +9,7 @@ RC_TYPE='rc'
 
 version_filepath = os.path.join(os.path.dirname(__file__), 'VersionFile.txt')
 version_pattern = re.compile(fr'^\d+.\d+.(({DEV_TYPE}|{RC_TYPE}))\d+')
-version_split_snepshot_pattern=f".{DEV_TYPE}|{RC_TYPE}"
+version_split_snepshot_pattern=f".{DEV_TYPE}|.{RC_TYPE}"
 
 def get_version():
     with open(version_filepath, 'r') as version_file:
