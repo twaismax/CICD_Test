@@ -19,7 +19,7 @@ jobs:
       - uses: haya14busa/action-cond@v1
         id: regex
         with:
-          cond: ${{ startsWith(github.head_ref, 'main' }}
+          cond: ${{ startsWith(github.head_ref, "main" }}
           if_true: '[^(Feature|Fix|Infrastructure|Release|Merge)]\s*\[v[0-9]+.[0-9]+\]\s*MW-[0-9]+'
           if_false: '[^(Feature|Fix)]\s*'
       - name: Use conditional value
