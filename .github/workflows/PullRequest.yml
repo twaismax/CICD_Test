@@ -15,6 +15,8 @@ jobs:
         python-version: ["3.8"]
     steps:
     
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
       - run: echo "Enforcing name"
       - uses: deepakputhraya/action-pr-title@master
         with:
