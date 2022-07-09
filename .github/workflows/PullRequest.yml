@@ -5,7 +5,7 @@ on:
           - opened
       branches:
           - 'main'
-          - 'release/**'
+          - 'release/Test_release'
 permissions: write-all
 
 jobs:
