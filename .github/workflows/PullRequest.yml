@@ -4,8 +4,8 @@ on:
       types:
           - opened
       branches:
-          - main
-          - release/**
+          - 'main'
+          - 'release/**'
 permissions: write-all
 
 jobs:
