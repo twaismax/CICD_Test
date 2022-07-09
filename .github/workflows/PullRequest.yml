@@ -1,7 +1,7 @@
 name: BeehomePullRequestJobs
 on: [pull_request]
 jobs:
-  BeeHomePullRequestGitHubActions2:
+  BeeHomePullRequestGitHubActions:
     runs-on: ubuntu-latest
     strategy:
       matrix:
