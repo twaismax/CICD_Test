@@ -1,11 +1,9 @@
 name: BeehomePullRequestJobs
 on: 
   pull_request:
-      types:
-          - opened
       branches:
-          - 'main'
-          - 'release/Test_release'
+          - main
+          - release/Test_release
 permissions: write-all
 
 jobs:
