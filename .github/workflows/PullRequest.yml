@@ -1,7 +1,5 @@
 name: BeehomePullRequestJobs
 on: [pull_request]
-permissions: write-all
-
 jobs:
   BeeHomePullRequestGitHubActions:
     runs-on: ubuntu-latest
