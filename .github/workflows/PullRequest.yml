@@ -1,7 +1,6 @@
 name: BeehomePullRequestJobs
 on: 
-  pull_request:
-      branches: ['main','release/*']
+  pull_request
 permissions: write-all
 
 jobs:
