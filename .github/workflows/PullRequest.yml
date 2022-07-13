@@ -1,9 +1,10 @@
 name: BeehomePullRequestJobs
 on:
   pull_request:
-      branches:
-      - 'master'
-      - 'release/**'
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
+      - 'releases/**'
 jobs:
   BeeHomePullRequestGitHubActions:
     runs-on: ubuntu-latest
