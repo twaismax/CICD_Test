@@ -1,10 +1,9 @@
 name: BeehomePullRequestJobs
 on:
-  workflow_dispatch:
   pull_request:
       branches:
-          - master
-          - 'release/**'
+          - "main"
+          - "release/**"
 jobs:
   BeeHomePullRequestGitHubActions:
     runs-on: ubuntu-latest
