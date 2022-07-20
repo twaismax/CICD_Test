@@ -29,6 +29,14 @@ jobs:
           pip install -r requirments.txt
           pip install -r ci_requirments.txt
       
+      - name: Set Credentials      
+        run: |
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config remote.origin.url 'https://${{ secrets.MY_TOKEN }}@github.com/${{ github.repository }}'
+      
       - run: echo "Master Version And Creat Local Tag"
       
       - name: UpdateVersionAndCreateLocalTag
