@@ -23,6 +23,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirments.txt
+          pip install -r ci_requirments.txt
+      
       - run: echo "Master Version And Creat Local Tag"
       
       - name: UpdateVersionAndCreateLocalTag
