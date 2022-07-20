@@ -52,3 +52,8 @@ jobs:
       run: |
           echo "You don't have new commits 🛑!"
           exit 0
+
+    - name: exit_good
+      run: |
+          echo "Good!!!!"
+    
