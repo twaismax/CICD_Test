@@ -1,6 +1,5 @@
 name: BeehomeBuildJobs
 on: 
-  workflow_run:
   schedule:
    - cron: "*/15 * * * *"
 
