@@ -1,7 +1,7 @@
 name: BeehomeBuildJobs
 on: 
   schedule:
-   - cron: "*/60 * * * *"
+   - cron: "*/5 * * * *"
 
 permissions: write-all
 jobs:
@@ -10,7 +10,12 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8"]
-    steps:    
+    steps: 
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - run: echo "$GITHUB_CONTEXT"
+      
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@master
         with:
@@ -20,56 +25,4 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirments.txt
-          pip install -r ci_requirments.txt
-          
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: Test with pytest
-        run: |
-          coverage run -m pytest -v
       
-
-      - run: echo "Updating version"
-      - name: Updating version
-        run: |
-          python ./.github/Versions/VersionUpdateScript.py inc-patch
-          python ./.github/Versions/VersionUpdateScript.py get_version
-      
-      - run: echo "Generating coverage badge"
-      - name: Coverage Badge
-        uses: tj-actions/coverage-badge-py@v1.8
-      
-      - run: echo "🖥️ Workflow updates changed files"
-     
-      - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v9
-        id: changed_files
-        with:
-          files: coverage.svg,.github/Versions/VersionFile.txt
-
-      - name: Commit files
-        if: steps.changed_files.outputs.files_changed == 'true'
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add coverage.svg
-          git add .github/Versions/VersionFile.txt
-          git commit -m "Updated Pull request files"
-      - name: Add tag
-        if: steps.changed_files.outputs.files_changed == 'true'
-        run: |
-          VERSION=$(python ./.github/Versions/VersionUpdateScript.py get_version)
-          git tag -a $VERSION  -m "latest version"
-          
-      - name: Push changes
-        if: steps.changed_files.outputs.files_changed == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.head_ref }} 
-          
-        
-      - run: echo "🍏 This job's status is ${{ job.status }}."
