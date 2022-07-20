@@ -1,7 +1,8 @@
 name: BeehomeBuildJobs
 on: 
+  workflow_run:
   schedule:
-   - cron: "*/5 * * * *"
+   - cron: "*/15 * * * *"
 
 permissions: write-all
 jobs:
