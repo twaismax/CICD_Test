@@ -51,4 +51,4 @@ jobs:
       if: ${{ steps.last-commit-regex-match.outputs.match != '' }}
       run: |
           echo "You don't have new commits 🛑!"
-          exit (1)
+          exit 0
