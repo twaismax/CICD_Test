@@ -28,24 +28,24 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
-          - name: Get CurrentCommit
-        id: branch_data
-        run: |
-            CURRENT_BRANCH_COMMIT_MESSAGE=$(git log --format=%B -n 1 $(git log -1 --pretty=format:"%h") | cat -)
-            echo "::set-output name=current_commit_message::$CURRENT_BRANCH_COMMIT_MESSAGE"
-      
-      - name: Print current commit 
-        run: |
-              echo ${{steps.branch_data.outputs.current_commit_message}}
-       
-      - uses: actions-ecosystem/action-regex-match@v2
-        id: last-commit-regex-match
-        with:
-          text: ${{steps.branch_data.outputs.current_commit_message}}
-          regex: '(latest version)'
-      
-      - name: exit_if_last_commit_is_same_as_before
-        if: ${{ steps.last-commit-regex-match.outputs.match != '' }}
-        run: |
-            echo "You don't have new commits 🛑!"
-            exit(0)
+    - name: Get CurrentCommit
+      id: branch_data
+      run: |
+          CURRENT_BRANCH_COMMIT_MESSAGE=$(git log --format=%B -n 1 $(git log -1 --pretty=format:"%h") | cat -)
+          echo "::set-output name=current_commit_message::$CURRENT_BRANCH_COMMIT_MESSAGE"
+
+    - name: Print current commit 
+      run: |
+            echo ${{steps.branch_data.outputs.current_commit_message}}
+
+    - uses: actions-ecosystem/action-regex-match@v2
+      id: last-commit-regex-match
+      with:
+        text: ${{steps.branch_data.outputs.current_commit_message}}
+        regex: '(latest version)'
+
+    - name: exit_if_last_commit_is_same_as_before
+      if: ${{ steps.last-commit-regex-match.outputs.match != '' }}
+      run: |
+          echo "You don't have new commits 🛑!"
+          exit(0)
