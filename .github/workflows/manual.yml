@@ -38,7 +38,7 @@ jobs:
         regex: '^Tomer'
 
     - name: exit_name_compare
-      if: ${{ steps.name_compare.outputs.match != '' }
+      if: ${{ steps.name_compare.outputs.match != '' }}
       run: |
             echo "You don't have new commits 🛑!"
             exit 1
