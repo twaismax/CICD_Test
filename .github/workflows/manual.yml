@@ -31,6 +31,18 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
+    - uses: actions-ecosystem/action-regex-match@v2
+      id: name_compare
+      with:
+        text: ${{inputs.name}}
+        regex: '^Tomer'
+
+    - name: exit_if_last_commit_is_same_as_before
+      if: ${{ steps.name_compare.outputs.match != '' }
+      run: |
+            echo "You don't have new commits 🛑!"
+            exit 1
+
     - name: Get CurrentCommit
       id: branch_data
       run: |
