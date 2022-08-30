@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Manual workflow input
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -29,3 +29,9 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
+    - name: condition 1
+      if: ${{ github.event.inputs.name }}=='yes'
+      run: echo 'yes!!!!!!!'
+    - name: condition 2
+      if: ${{ github.event.inputs.name }}=='yes'
+      run: echo 'No#########'
