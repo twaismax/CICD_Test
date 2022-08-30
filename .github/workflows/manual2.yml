@@ -30,8 +30,8 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
     - name: condition 1
-      if: contains('yes', ${{ github.event.inputs.name }})
+      if: contains('true', ${{ github.event.inputs.name }})
       run: echo 'yes!!!!!!!'
     - name: condition 2
-      if: contains('no', ${{ github.event.inputs.name }})
+      if: contains('false', ${{ github.event.inputs.name }})
       run: echo 'No#########'
