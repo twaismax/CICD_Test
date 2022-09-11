@@ -22,6 +22,8 @@ jobs:
       - name: Use conditional value
         run: |
             echo "${{ github.base_ref }}"
+            echo "${{ github.ref }}"
+            echo "${{ github.head_ref }}"
             echo "${{ steps.regex_rule.outputs.value }}"
       - uses: deepakputhraya/action-pr-title@master
         with:
