@@ -11,6 +11,7 @@ class myCrazyCalclulator():
         self.const_multiplier = randint(0, 100)
         self.crazy_mode = crazy_mode
         k=7
+        d=12
     def add(self, a: int, b: int) -> int:
         if not self.crazy_mode:
             return a + b
